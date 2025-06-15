@@ -1,0 +1,15 @@
+cmake_minimum_required(VERSION 3.30)
+project(hello_world)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/bin)
+aux_source_directory(. SRC_LIST)
+add_executable(hello_world ${SRC_LIST})
+
+if (MSVC)
+    target_compile_options(hello_world PRIVATE /W4 /WX)
+else()
+    target_compile_options(hello_world PRIVATE -Wall -Wextra -Werror)
+endif()
